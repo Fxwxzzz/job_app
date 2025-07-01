@@ -1,0 +1,19 @@
+<!-- templates/job_detail.html -->
+{% extends "base.html" %}
+{% block title %}Job Details{% endblock %}
+{% block content %}
+<h2>{{ job.title }}</h2>
+<h5>{{ job.company }} – {{ job.location }}</h5>
+<p><strong>Salary:</strong> {{ job.salary }}</p>
+<p>{{ job.description }}</p>
+
+{% if current_user.role == 'jobseeker' %}
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label>Upload Resume (PDF)</label>
+      <input type="file" name="resume" class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Apply Now</button>
+  </form>
+{% endif %}
+{% endblock %}
